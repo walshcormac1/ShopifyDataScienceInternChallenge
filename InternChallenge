@@ -1,0 +1,33 @@
+Shopify Data Science Intern Challenge 
+
+Cormac Walsh
+Question 1.)
+
+a.) The AOV calculated of $3145.13 is the average from the sum of all order totals (15725640) over the number of orders in that time period which in our case is 5000. The main problem with this calculation is that this assumes each shoe to cost $1.00 which is unlikely. So a better evaluation for AOV would be the same calculation then dividing the $3145.13 by the cost of the shoe, since it is the same for each shoe we can just use that one value. 
+
+b.) So we can arbitrarily choose a value for the cost of the shoe such as $19.99, and simply use the same procedure for the AOV then just divide by $19.99. Looking at the data there are some obvious outliers such as row 17, however this shouldn�t be excluded from the data set since it also has a large quantity of items, so the price of each ordered shoe is reasonable.
+
+c.) $157.34
+
+Question 2.)
+
+a.) SELECT COUNT(*)
+   FROM Orders O JOIN Shippers S ON O.ShipperID = S.ShipperID
+      WHERE S.ShipperName = 'Speedy Express';
+      
+      Answer = 54
+
+b.) SELECT LastName
+FROM Orders O INNER JOIN Employees E ON O.EmployeeID = E.EmployeeID
+GROUP BY O.EmployeeID
+ORDER BY COUNT(O.EmployeeID) DESC LIMIT 1;
+   
+      Answer = �Peacock�
+
+c.) SELECT P.ProductID, P.ProductName
+FROM OrderDetails OD INNER JOIN Orders O ON OD.OrderID = O.OrderId INNER JOIN Products P ON OD.ProductID = P.ProductID INNER JOIN Customers C ON O.CustomerID = C.CustomerID
+WHERE Country = 'Germany'
+GROUP BY P.ProductID
+ORDER BY COUNT(P.ProductID) LIMIT 1;
+
+Answer = �6 Grandma�s Boysenberry Spread�
